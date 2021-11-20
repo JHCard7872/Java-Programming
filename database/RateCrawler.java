@@ -8,9 +8,9 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 
 public class RateCrawler {
-	private double rate=-1.0;
+	private static double rate=-1.0;
 	
-	private void crawlRate() {
+	private static void crawlRate() {
 		URL url=null;
 		BufferedReader br=null;
 		
@@ -58,8 +58,8 @@ public class RateCrawler {
 		}
 	}
 	
-	public double getRate() {
-		if(this.rate==-1.0) {
+	public static double getRate() {
+		if(RateCrawler.rate==-1.0) {
 			crawlRate();
 		}
 		return rate;

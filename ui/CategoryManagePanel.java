@@ -3,27 +3,29 @@ package ui;
 import javax.swing.*;
 import java.awt.*;
 
-
 public class CategoryManagePanel extends BasicPanel {
 	
-	// 맨 위에 입력 이미지 넣어야 하는데 어떻게 하나..?
 	private ImageIcon catema = new ImageIcon("images/catema.png"); // 이미지 로딩
 	private JLabel catemaimg=new JLabel("",catema,SwingConstants.CENTER); // 레이블 생성
+
+	// 간격 조절
+	private JLabel Line = new JLabel("aaaaaaa"); // 라벨
+	private JLabel Line1 = new JLabel("aaaaaaaa"); // 라벨
+	private JLabel Line2 = new JLabel("aaaaaaaa"); // 라벨
+	private JLabel Line3 = new JLabel("aaaaaaaa"); // 라벨
+	private JLabel Line4 = new JLabel("aaaaaaaaaaaaaaaaaaaaaaaaaaa"); // 라벨
+
 	
-	//private ButtonGroup adc = new ButtonGroup(); // 라디오 버튼 그룹 객체 생성
-	private JRadioButton add = new JRadioButton(" 추가      ", true); // 라디오 버튼
-	private JRadioButton delete = new JRadioButton(" 삭제      ");
-	private JRadioButton change = new JRadioButton(" 변경      ");
+	private JButton add = new JButton("추가"); // 버튼
+	private JButton delete = new JButton("삭제");
+	private JButton change = new JButton("변경");
 	
 	
 	// ==========================================================================
 	
 	
-	private JTextField delecataname = new JTextField(12);
-	private JLabel delecn = new JLabel("  삭제할 카테고리 이름  "); // 라벨
-	
-	private JTextField changecatename = new JTextField(12);
-	private JLabel changecn = new JLabel("  변경할 카테고리 이름  "); // 라벨
+	private JTextField addName = new JTextField(12);
+	private JLabel addN = new JLabel("  추가할 카테고리 이름                "); // 라벨
 	
 	
 	// ==========================================================================
@@ -45,50 +47,71 @@ public class CategoryManagePanel extends BasicPanel {
 		buttonclick = new ButtonClick(frame);
 		InitObject();
 		CenterPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 30)); // 왼쪽정렬, 수직거리 30
-		CenterPanel.add(add); // 순서대로 저장
-		CenterPanel.add(delete);
-		CenterPanel.add(change);
-		CenterPanel.add(delecn);
-		CenterPanel.add(delecataname);
+		CenterPanel.add(Line);
+		CenterPanel.add(catemaimg);
+		
+		CenterPanel.add(addN); // 순서대로 저장
+		CenterPanel.add(addName);
+		CenterPanel.add(Line1);
+		CenterPanel.add(add);
+		
 		CenterPanel.add(delcate);
 		CenterPanel.add(delCate);
-		CenterPanel.add(changecn);
-		CenterPanel.add(changecatename);
+		CenterPanel.add(Line2);
+		CenterPanel.add(delete);
+		
+		
 		CenterPanel.add(chacate);
 		CenterPanel.add(chaCate);
+		CenterPanel.add(Line3);
+		CenterPanel.add(change);
+
 	}
 	
 	
 	
 	private void InitObject() { // 초기화 작업 및 초기세팅
 		
-		add.setBackground(Color.WHITE);
+		Line.setBackground(Color.WHITE);
+		Line.setForeground(Color.WHITE);
+		Line.setFont(new Font("함초롱바탕", Font.BOLD, 18)); 
+		
+		Line1.setBackground(Color.WHITE);
+		Line1.setForeground(Color.WHITE);
+		Line1.setFont(new Font("함초롱바탕", Font.BOLD, 18)); 
+		
+		Line2.setBackground(Color.WHITE);
+		Line2.setForeground(Color.WHITE);
+		Line2.setFont(new Font("함초롱바탕", Font.BOLD, 18)); 
+		
+		Line3.setBackground(Color.WHITE);
+		Line3.setForeground(Color.WHITE);
+		Line3.setFont(new Font("함초롱바탕", Font.BOLD, 18)); 
+		
+		
+		// ========================================================================
+		
+		
+		add.setBackground(new Color(244,244,244));
 		add.setForeground(Color.BLACK);
 		add.setFont(new Font("함초롱바탕", Font.BOLD, 18)); 
 		
 		
-		delete.setBackground(Color.WHITE);
+		delete.setBackground(new Color(244,244,244));
 		delete.setForeground(Color.BLACK);
 		delete.setFont(new Font("함초롱바탕", Font.BOLD, 18));
 		
 		
-		change.setBackground(Color.WHITE);
+		change.setBackground(new Color(244,244,244));
 		change.setForeground(Color.BLACK);
 		change.setFont(new Font("함초롱바탕", Font.BOLD, 18)); 
 		
-		// ========================================================================
-		
-		delecataname.setBackground(Color.WHITE);
-		delecataname.setForeground(Color.BLACK);
-		delecataname.setFont(new Font("함초롱바탕", Font.BOLD, 18)); 
-		
-		
-		changecatename.setBackground(Color.WHITE);
-		changecatename.setForeground(Color.BLACK);
-		changecatename.setFont(new Font("함초롱바탕", Font.BOLD, 18));
 		
 		// ========================================================================
 		
+		addName.setBackground(Color.WHITE);
+		addName.setForeground(Color.BLACK);
+		addName.setFont(new Font("함초롱바탕", Font.BOLD, 18)); 
 		
 		delCate.setBackground(Color.WHITE);
 		delCate.setForeground(Color.BLACK);
@@ -102,18 +125,10 @@ public class CategoryManagePanel extends BasicPanel {
 		// ========================================================================
 		
 		
-		delecn.setFont(new Font("함초롱바탕", Font.BOLD, 18)); 
-		changecn.setFont(new Font("함초롱바탕", Font.BOLD, 18)); 
+		addN.setFont(new Font("함초롱바탕", Font.BOLD, 18)); 
 		delcate.setFont(new Font("함초롱바탕", Font.BOLD, 18)); 
 		chacate.setFont(new Font("함초롱바탕", Font.BOLD, 18)); 
 		
-		
-		
 	}
-	
-	
-	
-	
-	
 	
 }

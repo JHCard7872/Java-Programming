@@ -7,7 +7,7 @@ import java.util.StringTokenizer;
 
 
 public class Calculator {
-	//final int USDCHANGE = 1000;
+	final double RATE = RateCrawler.getRate(); // RATE==1190.0, 1 USD == 1190.0 KRW
 	Vector<Vector<String>> DBlist;
 	double [] curBalanceList;
 	public Calculator(Vector<Vector<String>> DBL, double Balance[]) {
@@ -16,7 +16,6 @@ public class Calculator {
 	}
 	
 	public Vector<Vector<String>> CalcPerCategory(String KU){	//매개변수로 받은 KU("0", "1", "2")에 따라 자료를 정렬해준다 [[총액], [도서 130000 0.08086], [유흥 99470 0.06187], ..., ...]
-		RateCrawler rc=new RateCrawler();
 		Vector<Vector<String>> cal=new Vector<>();
 		Vector<String> Clist = Category.CategoryDB.getCategory();	//카테고리 목록 저장
 		int i=0;	//각 카테고리별 지출 금액을 저장할 변수
@@ -39,7 +38,7 @@ public class Calculator {
 						tmp.removeAllElements();	//tmp를 초기화해 최근 값만 남긴다
 						tmp.add(Sline.get(2));		//tmp에 카테고리 이름을 저장
 						if(Sline.get(1).equals("1")) {
-							i += rc.getRate()*Integer.parseInt(Sline.get(3));	//합한 금액을 저장
+							i += RATE*Integer.parseInt(Sline.get(3));	//합한 금액을 저장
 						}
 						else
 							i += Integer.parseInt(Sline.get(3));	//합한 금액을 저장		
@@ -60,7 +59,6 @@ public class Calculator {
 	}
 	
 	public String Money(String KU) {
-		RateCrawler rc=new RateCrawler();
 		int i=0;
 		String money="";
 		for(Vector<String> line: DBlist) {
@@ -70,7 +68,7 @@ public class Calculator {
 				i += Integer.parseInt(line.get(3));	//합한 금액을 저장
 			else if(!(line.get(2).equals("수입")) && KU.equals("2")) {
 				if(line.get(1).equals("1")) {
-					i += rc.getRate()*Integer.parseInt(line.get(3));	//합한 금액을 저장
+					i += RATE*Integer.parseInt(line.get(3));	//합한 금액을 저장
 				}
 				else
 					i += Integer.parseInt(line.get(3));	//합한 금액을 저장
@@ -91,6 +89,7 @@ public class Calculator {
 		}
 		return result;	//결과 반환
 	}
+	
 	public Vector<Vector<String>> CalcPerCategoryKRW(){	//카테고리별 원화 지출 반환
 		Vector<Vector<String>> result= CalcPerCategory("0");	//Vector<Srting> 반환 자료구조 [["도서", "100000"], ["유흥", "150000"]] // 카테고리, 원화/외화, 금액]
 		//test 코드
@@ -171,7 +170,7 @@ public class Calculator {
 	
 	
 	public HashMap<String, Double> calcIncome() {
-		HashMap<String,Double> map=new HashMap<String,Double>();	// 자료구조 {"202105":100000, "202106":2000, ... } // 년월, 총금액 순, double->string화 해서 리턴
+		HashMap<String,Double> map=new HashMap<String,Double>();	// 자료구조 {"202105":100000, "202106":2000, ... }
 		
 		// hashmap 초기화
 		String today = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd")); // today == "yyyyMMdd"
@@ -201,11 +200,9 @@ public class Calculator {
 		return map;
 	}
 	
-	
-	
-	
+		
 	public HashMap<String, Double> calcOutcome() {
-		HashMap<String,Double> map=new HashMap<String,Double>();	// 자료구조 {"202105":100000, "202106":2000, ... } // 년월, 총금액 순, double->string화 해서 리턴
+		HashMap<String,Double> map=new HashMap<String,Double>();	// 자료구조 {"202105":100000, "202106":2000, ... }
 		
 		// hashmap 초기화
 		String today = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd")); // today == "yyyyMMdd"
@@ -218,7 +215,7 @@ public class Calculator {
 				intCurYear-=1;
 			}
 			if(intCurMonth<10) {
-				map.put(Integer.toString(intCurYear)+"0"+Integer.toString(intCurMonth), 0.0);				
+				map.put(Integer.toString(intCurYear)+"0"+Integer.toString(intCurMonth), 0.0);
 			}
 			else {
 				map.put(Integer.toString(intCurYear)+Integer.toString(intCurMonth), 0.0);

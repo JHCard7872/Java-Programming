@@ -5,8 +5,12 @@ import java.awt.*;
 
 public class ManagePanel extends BasicPanel {
 
-
-	// 맨 위에 입력 이미지 넣어야 하는데 어떻게 하나..?
+	// 간격 조절
+	private JLabel Line = new JLabel("aaaaaaaaaa"); // 라벨
+	private JLabel Line1 = new JLabel("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"); // 라벨
+	private JLabel Line2 = new JLabel("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"); // 라벨
+	private JLabel Line3 = new JLabel("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"); // 라벨
+		
 	private ImageIcon manage = new ImageIcon("images/manage.png"); // 이미지 로딩
 	private JLabel manageimg=new JLabel("",manage,SwingConstants.CENTER); // 레이블 생성
 	
@@ -28,7 +32,9 @@ public class ManagePanel extends BasicPanel {
 		buttonclick = new ButtonClick(frame);
 		InitObject();
 		CenterPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 30)); // 왼쪽정렬, 수직거리 30
-		CenterPanel.add(cate); // 순서대로 저장
+		CenterPanel.add(Line); // 순서대로 저장
+		CenterPanel.add(manageimg);
+		CenterPanel.add(cate);
 		CenterPanel.add(Category);
 		CenterPanel.add(current);
 		CenterPanel.add(curexpenlimit);
@@ -39,6 +45,11 @@ public class ManagePanel extends BasicPanel {
 	
 	
 	private void InitObject() { // 초기화 작업 및 초기세팅
+		
+		Line.setBackground(Color.WHITE);
+		Line.setForeground(Color.WHITE);
+		Line.setFont(new Font("함초롱바탕", Font.BOLD, 12)); 
+		
 		
 		Category.setBackground(Color.WHITE);
 		Category.setForeground(Color.BLACK);

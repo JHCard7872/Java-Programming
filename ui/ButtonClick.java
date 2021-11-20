@@ -3,17 +3,29 @@ package ui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class ButtonClick implements ActionListener{
-	private JFrame frame = new JFrame();
+	private JFrame frame;
+	private JPanel BackPanel;
+	private boolean isBackButton = false;
+	
 	public ButtonClick(JFrame frame) {
 		this.frame = frame;
+	}
+	
+	public ButtonClick(JFrame frame, JPanel BackPanel) {
+		this.frame = frame;
+		this.BackPanel = BackPanel;
+		isBackButton = true;
 	}
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton)e.getSource();
 		String compareText = b.getText().replace(" ", "");
+		
 		if(compareText.equals("입력")) {
 			frame.setContentPane(new InputPanel(frame));
 			frame.setVisible(true);

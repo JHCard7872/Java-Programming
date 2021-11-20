@@ -10,5 +10,6 @@ public class Frame{
 		frame.setTitle("개미의 알뜰살뜰");
 		frame.setSize(430, 700);
 		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }

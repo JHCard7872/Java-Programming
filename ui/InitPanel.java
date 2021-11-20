@@ -8,7 +8,6 @@ import javax.swing.*;
 public class InitPanel extends BasicPanel {
 	
 	
-	// 맨 위에 입력 이미지 넣어야 하는데 어떻게 하나..?
 	private ImageIcon init = new ImageIcon("images/init.png"); // 이미지 로딩
 	private JLabel initimg=new JLabel("",init,SwingConstants.CENTER); // 레이블 생성
 			
@@ -25,7 +24,8 @@ public class InitPanel extends BasicPanel {
 		buttonclick = new ButtonClick(frame);
 		InitObject();
 		CenterPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 30)); // 왼쪽정렬, 수직거리 30
-		CenterPanel.add(exli); // 순서대로 저장
+		CenterPanel.add(initimg); // 순서대로 저장
+		CenterPanel.add(exli);
 		CenterPanel.add(expenlimit);
 		CenterPanel.add(curassw);
 		CenterPanel.add(curassetwon);

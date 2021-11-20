@@ -8,6 +8,6 @@ public class BasicButton extends JButton{
 	public BasicButton() {
 		setBackground(Color.BLACK);
 		setForeground(Color.WHITE);
-		setFont(new Font("���ʷչ���", Font.BOLD, 18));
+		setFont(new Font("함초롱바탕", Font.BOLD, 18));
 	}
 }
