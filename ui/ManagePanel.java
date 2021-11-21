@@ -97,6 +97,11 @@ public class ManagePanel extends BasicPanel {
 		curexpenlimit.setBackground(Color.WHITE);
 		curexpenlimit.setForeground(Color.BLACK);
 		curexpenlimit.setFont(new Font("함초롱바탕", Font.BOLD, 18));
+		curexpenlimit.addKeyListener(new KeyAdapter() {									// 입력할때 콤마 표시
+			public void keyTyped(KeyEvent e) { e.consume(); }
+			public void keyReleased(KeyEvent e) { Category.setSelectedIndex(Category.getSelectedIndex()); }
+			
+		});
 		
 		//----------------------------------------------------------------변경할 지출 한도 텍스트 입력 (콤마 포함)------------------------------------
 		changexpenlimit.setBackground(Color.WHITE);
