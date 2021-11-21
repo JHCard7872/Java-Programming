@@ -29,7 +29,7 @@ public class ManagePanel extends BasicPanel {
 	
 	Vector<String> Clist = CategoryDB.getCategory();	//카테고리 목록 저장 
 	
-	private JComboBox Category = new JComboBox(Clist); // 카테고리 콤보박스
+	private JComboBox Category; // 카테고리 콤보박스
 	private JLabel cate = new JLabel("  카테고리 선택      "); // 라벨
 	
 	// =======================================================================
@@ -73,6 +73,8 @@ public class ManagePanel extends BasicPanel {
 		Line.setFont(new Font("함초롱바탕", Font.BOLD, 12)); 
 		
 		// ------------------------------------------------------카테고리 콤보박스, (현재 지출한도)텍스트 라벨 지정-----------------------------------------------
+		Clist.remove(0);
+		Category = new JComboBox(Clist);
 		Category.setBackground(Color.WHITE); 							
 		Category.setForeground(Color.BLACK);
 		Category.setFont(new Font("함초롱바탕", Font.BOLD, 18)); 
