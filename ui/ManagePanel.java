@@ -38,7 +38,7 @@ public class ManagePanel extends BasicPanel {
 	private JLabel current = new JLabel("  현재 지출 한도     "); // 라벨
 	private Vector<Integer> CLimitList = CategoryDB.getCategoryLimit();
 	
-	private JTextField changexpenlimit= new JTextField(12);
+	private JTextField changexpenlimit= new JTextField("금액 입력(엔터)",12);
 	private JLabel change = new JLabel("  변경할 지출 한도 "); // 라벨
 	
 	private GoToBackPanel backbutton;
@@ -87,7 +87,6 @@ public class ManagePanel extends BasicPanel {
 				}
 				curexpenlimit.setText(CommaMoney); // 텍스트 지정
 				SelectCategory = (String)cb.getSelectedItem();
-				System.out.println(SelectCategory);
 			}
 		});
 		Category.setSelectedIndex(0); // 초기 설정(0번쨰 가리키게)
@@ -132,6 +131,13 @@ public class ManagePanel extends BasicPanel {
 				Category.setSelectedIndex(Category.getSelectedIndex()); // 현재 지출 한도 업데이트
 				t.setText("");
 			}
+		});
+		changexpenlimit.addFocusListener(new FocusListener() { // 포커스할 경우 초기화 시키는거
+			public void focusGained(FocusEvent e) {
+				JTextField t = (JTextField)e.getSource();
+				if(t.getText().equals("금액 입력(엔터)")) t.setText(""); // 금액 입력 일 경우 초기화
+			}
+			public void focusLost(FocusEvent e) {}
 		});
 		
 		// ========================================================================
