@@ -1,3 +1,6 @@
+/*
+ * 320줄에 DB저장 메소드 필요
+ * */
 package ui;
 
 import java.awt.Color;
@@ -10,7 +13,10 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.time.LocalDate;
+import java.util.Stack;
 import java.util.Vector;
 
 import javax.swing.ButtonGroup;
@@ -238,6 +244,29 @@ public class InputPanel extends BasicPanel{
 			Input.setForeground(Color.BLACK);
 			Input.setCaretColor(Color.BLACK); // 깜박이 색
 			Input.addActionListener(new InputData());
+			Input.addKeyListener(new KeyAdapter() {									// 입력할때 콤마 표시
+				public void keyTyped(KeyEvent e) {
+					JTextField t = (JTextField)e.getSource();
+					if((e.getKeyChar() == '0') ||(e.getKeyChar() == '1') ||(e.getKeyChar() == '2') ||
+							(e.getKeyChar() == '3') ||(e.getKeyChar() == '4') ||(e.getKeyChar() == '5') ||
+							(e.getKeyChar() == '6') ||(e.getKeyChar() == '7') ||(e.getKeyChar() == '8') ||
+							(e.getKeyChar() == '9')) {
+					}
+					else e.consume();
+					if(t.getText().length()>=16) e.consume();
+				}
+				public void keyReleased(KeyEvent e) { 
+					JTextField t = (JTextField)e.getSource();
+					String CommaMoney = ""; // 여기에 콤마 포함 저장 문자열 
+					Stack<Character> MoneyToComma = addComma(t.getText()); // 스택에 저장(addComma함수에 string 금액 넣어줘야함)
+					
+					while(!MoneyToComma.isEmpty()) { // pop
+						CommaMoney += MoneyToComma.pop();
+					}
+					t.setText(CommaMoney); // 텍스트 지정
+				}
+			});
+			
 			Input.addFocusListener(new FocusListener() { // 포커스할 경우 초기화 시키는거
 				public void focusGained(FocusEvent e) {
 					JTextField t = (JTextField)e.getSource();
@@ -247,6 +276,19 @@ public class InputPanel extends BasicPanel{
 			});
 				
 			// ----------------------------------------------------------------------------------텍스트 필드
+		}
+		
+		private Stack<Character> addComma(String Money) {  					// 돈 콤마 추가해주는 함수
+			Money = Money.replaceAll(",","");
+			Money=Money.replaceAll("원","");
+			Stack<Character> ShowMoney = new Stack<Character>();
+			for(int i=0; i<Money.length(); i++) {
+				if(i%3==0 && i!= 0) {
+					ShowMoney.add(',');
+				}
+				ShowMoney.push(Money.charAt(Money.length()-1  - i));
+			}
+			return ShowMoney;
 		}
 		
 		private void SettingComboBox() { // 콤보박스 초기 날짜 설정(현재 날짜로)
@@ -272,32 +314,18 @@ public class InputPanel extends BasicPanel{
 			public void actionPerformed(ActionEvent e) {
 				JTextField t = (JTextField)e.getSource();
 				ForDBMoney = (String)t.getText();
-				boolean isNumber = true;
-				for(int i = 0 ;i<ForDBMoney.length(); i++) {
-					if(!(ForDBMoney.charAt(i) == '0') && !(ForDBMoney.charAt(i) == '1')&& !(ForDBMoney.charAt(i) == '2')&& !(ForDBMoney.charAt(i) == '3')
-							&& !(ForDBMoney.charAt(i) == '4')&& !(ForDBMoney.charAt(i) == '5')&& !(ForDBMoney.charAt(i) == '6')&& !(ForDBMoney.charAt(i) == '7')
-									&& !(ForDBMoney.charAt(i) == '8')&& !(ForDBMoney.charAt(i) == '9')) {
-						isNumber = false;
-						break;
-					}
+				ForDBMoney = ForDBMoney.replaceAll(",", "");
+				ForDBString.add(ForDBYear + ForDBMonth + ForDBDate); // 여기에 20211126 으로 저장됨
+				ForDBString.add(ForDBisKRW); // 0, 1 저장(원화 외화)
+				ForDBString.add(ForDBCategory); // 카테고리 저장
+				ForDBString.add(ForDBMoney); // 금액 저장
+				// 여기 ForDBString에 정보가 저장되어있습니다! Vector<String>으로 되어있어요 ***************************************여기요 여기! *********************
+				// << 여기에서 ForDBString이용해서 DB에 저장하면 됩니다.
+				for(int i=0; i<4; i++) { // << 이거는 단순 확인용 출력임 
+					System.out.print(ForDBString.toArray()[i]);
 				}
-				if(isNumber) {
-					ForDBString.add(ForDBYear + ForDBMonth + ForDBDate); // 여기에 20211126 으로 저장됨
-					ForDBString.add(ForDBisKRW); // 0, 1 저장(원화 외화)
-					ForDBString.add(ForDBCategory); // 카테고리 저장
-					ForDBString.add(ForDBMoney); // 금액 저장
-					// 여기 ForDBString에 정보가 저장되어있습니다! Vector<String>으로 되어있어요 ***************************************여기요 여기! *********************
-					for(int i=0; i<4; i++) { // << 이거는 단순 확인용 출력임 
-						System.out.print(ForDBString.toArray()[i]);
-					}
-					System.out.println();
-				}
-				else {
-					JOptionPane.showMessageDialog(null,"숫자만 입력해주세요!", "Message", JOptionPane.OK_CANCEL_OPTION); // 이거 얘기 필요!! >> 팝업창 위치..
-				}
-			
+				System.out.println();
 				ForDBString.clear();
-				 // 이제 DB저장 알고리즘 
 
 				t.setText("");
 			}
