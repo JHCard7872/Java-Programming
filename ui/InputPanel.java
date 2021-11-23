@@ -1,6 +1,3 @@
-/*
- * 320줄에 DB저장 메소드 필요
- * */
 package ui;
 
 import java.awt.Color;
@@ -34,7 +31,7 @@ import Category.CategoryDB;
 import javax.swing.JFrame;
 
 public class InputPanel extends BasicPanel{
-		
+	
 	// 간격 조절
 		private JLabel Line = new JLabel("aaaaaaaa"); // 라벨
 		private JLabel Line1 = new JLabel("aaaaaaaaa"); // 라벨
@@ -62,13 +59,14 @@ public class InputPanel extends BasicPanel{
 		private ButtonGroup KRW_USD = new ButtonGroup(); // 라디오 버튼 그룹
 		
 		private JRadioButton KRW = new JRadioButton("  원화                     ", true); // 라디오 버튼
-		private JRadioButton USD = new JRadioButton("  외화");
+		private JRadioButton USD = new JRadioButton("  외화                     ");
 		
 		private JLabel Calendar = new JLabel("날짜 설정         "); // 라벨
-		private JLabel YearLabel = new JLabel("년  ");
-		private JLabel MonthLabel = new JLabel("월  ");
-		private JLabel DateLabel = new JLabel("일");
-		private JLabel CategoryLabel = new JLabel("카테고리 설정: ");
+		private JLabel YearLabel = new JLabel(" 년  ");
+		private JLabel MonthLabel = new JLabel(" 월  ");
+		private JLabel DateLabel = new JLabel(" 일");
+		private JLabel CategoryLabel = new JLabel("카테고리 설정 ");
+		private JLabel PriceLabel = new JLabel(" 금액 입력       ");
 		
 		private BackButton GOtoBack = new BackButton();
 		
@@ -105,6 +103,7 @@ public class InputPanel extends BasicPanel{
 			CenterPanel.add(Line4);
 			CenterPanel.add(KRW);
 			CenterPanel.add(USD);
+			CenterPanel.add(PriceLabel);
 			CenterPanel.add(Input);
 			SouthPanel.setLayout(new FlowLayout(FlowLayout.LEFT)); // 뒤로가기
 			SouthPanel.add(GOtoBack);
@@ -231,6 +230,7 @@ public class InputPanel extends BasicPanel{
 			MonthLabel.setFont(new Font("함초롱바탕", Font.BOLD, 17)); 
 			DateLabel.setFont(new Font("함초롱바탕", Font.BOLD, 17)); 
 			CategoryLabel.setFont(new Font("함초롱바탕", Font.BOLD, 17)); 
+			PriceLabel.setFont(new Font("함초롱바탕", Font.BOLD, 17)); 
 			
 			// ---------------------------------------------------------------------------------라벨
 			

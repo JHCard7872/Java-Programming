@@ -30,16 +30,16 @@ public class ManagePanel extends BasicPanel {
 	Vector<String> Clist = CategoryDB.getCategory();	//카테고리 목록 저장 
 	
 	private JComboBox Category; // 카테고리 콤보박스
-	private JLabel cate = new JLabel("  카테고리 선택      "); // 라벨
+	private JLabel cate = new JLabel("  카테고리 선택         "); // 라벨
 	
 	// =======================================================================
 	
-	private JTextField curexpenlimit= new JTextField(12);
-	private JLabel current = new JLabel("  현재 지출 한도     "); // 라벨
+	private JTextField curexpenlimit= new JTextField(10);
+	private JLabel current = new JLabel("  현재 지출 한도        "); // 라벨
 	private Vector<Integer> CLimitList = CategoryDB.getCategoryLimit();
 	
-	private JTextField changexpenlimit= new JTextField("금액 입력(엔터)",12);
-	private JLabel change = new JLabel("  변경할 지출 한도 "); // 라벨
+	private JTextField changexpenlimit= new JTextField("금액 입력(엔터)",10);
+	private JLabel change = new JLabel("  변경할 지출 한도    "); // 라벨
 	
 	private GoToBackPanel backbutton;
 	private BackButton GOtoBack = new BackButton();
@@ -54,12 +54,19 @@ public class ManagePanel extends BasicPanel {
 		CenterPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 30)); // 왼쪽정렬, 수직거리 30
 		CenterPanel.add(Line); // 순서대로 저장
 		CenterPanel.add(manageimg);
+		CenterPanel.add(Line1);
+		
 		CenterPanel.add(cate);
 		CenterPanel.add(Category);
+		CenterPanel.add(Line2);
+		
 		CenterPanel.add(current);
 		CenterPanel.add(curexpenlimit);
+		CenterPanel.add(Line3);
+		
 		CenterPanel.add(change);
 		CenterPanel.add(changexpenlimit);
+		
 		SouthPanel.setLayout(new FlowLayout(FlowLayout.LEFT)); // 뒤로가기
 		SouthPanel.add(GOtoBack);
 	}
@@ -72,8 +79,21 @@ public class ManagePanel extends BasicPanel {
 		Line.setForeground(Color.WHITE);
 		Line.setFont(new Font("함초롱바탕", Font.BOLD, 12)); 
 		
+		Line1.setBackground(Color.WHITE);
+		Line1.setForeground(Color.WHITE);
+		Line1.setFont(new Font("함초롱바탕", Font.BOLD, 12)); 
+		
+		Line2.setBackground(Color.WHITE);
+		Line2.setForeground(Color.WHITE);
+		Line2.setFont(new Font("함초롱바탕", Font.BOLD, 12)); 
+		
+		Line3.setBackground(Color.WHITE);
+		Line3.setForeground(Color.WHITE);
+		Line3.setFont(new Font("함초롱바탕", Font.BOLD, 12)); 
+		
 		// ------------------------------------------------------카테고리 콤보박스, (현재 지출한도)텍스트 라벨 지정-----------------------------------------------
 		Clist.remove(0);
+		CLimitList.remove(0);
 		Category = new JComboBox(Clist);
 		Category.setBackground(Color.WHITE); 							
 		Category.setForeground(Color.BLACK);
@@ -91,7 +111,7 @@ public class ManagePanel extends BasicPanel {
 				SelectCategory = (String)cb.getSelectedItem();
 			}
 		});
-		Category.setSelectedIndex(0); // 초기 설정(0번쨰 가리키게)
+		Category.setSelectedIndex(0); // 초기 설정(0번 가리키게)
 		//---------------------------------------------------------------------------------------------------------------------------------
 		
 		curexpenlimit.setBackground(Color.WHITE);
