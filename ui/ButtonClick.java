@@ -43,9 +43,8 @@ public class ButtonClick implements ActionListener{
 			frame.setVisible(true);
 		}
 		else if(compareText.equals("알림")) { // "카테고리 관리"일 경우 CategoryManageFrame으로 넘어감
-			// 여기는 아직 미완
+			frame.setContentPane(new NoticePanel(frame));
 			frame.setVisible(true);
 		}
-		
 	}
 }

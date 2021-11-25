@@ -1,6 +1,8 @@
 package ui;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -25,8 +27,17 @@ public class BasicForInquiryPanel extends BasicPanel{
 		SouthPanel.add(GOtoBack);
 		SouthPanel.add(Line4);
 		SouthPanel.add(GotoMain);
+		InitSettingForIinquiry();
 	}
-	
+	private void InitSettingForIinquiry() {
+		Line4.setBackground(Color.WHITE);
+		Line4.setForeground(Color.WHITE);
+		Line4.setFont(new Font("함초롱바탕", Font.BOLD, 10)); 
+		
+		GotoMain.setBackground(Color.BLACK);
+		GotoMain.setForeground(Color.WHITE);
+		GotoMain.setFont(new Font("함초롱바탕", Font.BOLD, 17)); 
+	}
 	
 	
 	private class GoToBackPanel implements ActionListener{ // 뒤로가기 actionListener >> 뒤로가기 버튼에 적용

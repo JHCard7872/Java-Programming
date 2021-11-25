@@ -204,7 +204,7 @@ public class InquiryPanel extends BasicPanel {
 		}
 		public void actionPerformed(ActionEvent e) {  // 여기에 각각에 맞는 패널 넣어주면된다~
 			if(Check_Chart_Num == 1 && isIncome == true) {
-				frame.setContentPane(new MainPanel(frame)); // 이거 변경
+				frame.setContentPane(new NumPrintExpensePanel(frame)); // 이거 변경
 				frame.setVisible(true);
 			}
 			else if(Check_Chart_Num == 1 && isIncome == false) {
