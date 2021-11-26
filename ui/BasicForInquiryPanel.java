@@ -15,14 +15,15 @@ public class BasicForInquiryPanel extends BasicPanel{
 	private JLabel Line4 = new JLabel("aaaaaaaaaaaaaaaaaaaaaaaaaaa"); // 라벨
 	
 	private GoToBackPanel backbutton; // 뒤로가기(엑티브리스너)
-	private GoToMain Confirmaction;
 	
 	private BackButton GOtoBack = new BackButton(); // 뒤로가기(버튼)
 	private JButton GotoMain = new JButton("메인으로");
 	
+	private JFrame frame;
+	
 	public BasicForInquiryPanel(JFrame frame) {
+		this.frame = frame;
 		backbutton = new GoToBackPanel(frame); // BasicPanel에 있는 buttonclick
-		Confirmaction = new GoToMain(frame);
 		SouthPanel.setLayout(new FlowLayout());
 		SouthPanel.add(GOtoBack);
 		SouthPanel.add(Line4);
@@ -37,6 +38,10 @@ public class BasicForInquiryPanel extends BasicPanel{
 		GotoMain.setBackground(Color.BLACK);
 		GotoMain.setForeground(Color.WHITE);
 		GotoMain.setFont(new Font("함초롱바탕", Font.BOLD, 17)); 
+		GotoMain.addActionListener(new GoToMainListener(frame));
+		
+		GOtoBack.addActionListener(new GoToBackPanel(frame));
+		
 	}
 	
 	
@@ -51,9 +56,9 @@ public class BasicForInquiryPanel extends BasicPanel{
 		}
 	}
 	
-	private class GoToMain implements ActionListener{ // 확인 눌렀을때 수치/차트형에 따라 GUI표시
+	private class GoToMainListener implements ActionListener{ // 확인 눌렀을때 수치/차트형에 따라 GUI표시
 		private JFrame frame;
-		public GoToMain(JFrame frame) {
+		public GoToMainListener(JFrame frame) {
 			this.frame = frame;
 		}
 		public void actionPerformed(ActionEvent e) {  // 여기에 각각에 맞는 패널 넣어주면된다~
